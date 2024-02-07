@@ -10,19 +10,19 @@ import cors from "cors"
 dotenv.config();
 const Port = process.env.PORT;
 
-mongoose
-  .connect(process.env.MONGODB_URL, {
+mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log('Connected to MongoDB!');
-  })
+  useUnifiedTopology: true
+})
+  .then(() => { console.log("db connected successfully") })
   .catch((err) => {
+    console.log("err in connecting to database");
     console.log(err);
+    process.exit(1);
+
   });
 
-  const __dirname = path.resolve();
+const __dirname = path.resolve();
 
 
 const app = express();
