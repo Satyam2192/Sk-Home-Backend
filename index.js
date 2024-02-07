@@ -27,6 +27,10 @@ const __dirname = path.resolve();
 
 const app = express();
 
+app.use(cors({
+  origin: '*',
+}));
+
 app.use(express.json());
 
 app.use(cookieParser());
@@ -36,9 +40,7 @@ app.listen(Port, () => {
 });
 
 
-app.use(cors({
-  origin: '*',
-}));
+
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/listing', listingRouter);
