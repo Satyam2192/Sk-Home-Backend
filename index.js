@@ -45,11 +45,11 @@ app.use('/api/tour', tourRouter);
 app.use('/api/booking', bookingRouter);
 
 
-// app.use(express.static(path.join(__dirname, '/dist')));
+ app.use(express.static(path.join(__dirname, '/dist')));
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-// })
+ app.get('*', (req, res) => {
+   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+ })
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
