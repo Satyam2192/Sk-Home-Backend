@@ -1,26 +1,30 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
-const userRouter = require('./routes/user.route.js');
-const authRouter = require('./routes/auth.route.js');
-const tourRouter = require("./routes/tour.route.js");
-const bookingRouter = require("./routes/booking.route.js");
-
-const cookieParser = require('cookie-parser');
-const path = require('path');
-const cors = require("cors");
+import express from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import userRouter from './routes/user.route.js';
+import authRouter from './routes/auth.route.js';
+import listingRouter from './routes/listing.route.js';
+import footerRouter from './routes/footer.route.js';
+import navbarRouter from "./routes/navbar.route.js"
+import cookieParser from 'cookie-parser';
+import path from 'path';
+import cors from "cors"
 dotenv.config();
 const Port = process.env.PORT;
 
-mongoose.connect(process.env.MONGODB_URL)
-  .then(() => console.log("DB Connection is Successful"))
-  .catch((error) => {
-    console.log("Issue in DB Connection");
-    console.error(error.message);
+mongoose.connect(process.env.MONGODB_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+  .then(() => { console.log("db connected successfully") })
+  .catch((err) => {
+    console.log("err in connecting to database");
+    console.log(err);
     process.exit(1);
+
   });
 
-// const __dirname = path.resolve();
+const __dirname = path.resolve();
 
 
 const app = express();
@@ -41,15 +45,17 @@ app.listen(Port, () => {
 
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
-app.use('/api/tour', tourRouter);
-app.use('/api/booking', bookingRouter);
+app.use('/api/listing', listingRouter);
+app.use('/api/footer', footerRouter);
+app.use('/api/navabr', navbarRouter)
 
 
- app.use(express.static(path.join(__dirname, '/dist')));
 
- app.get('*', (req, res) => {
-   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
- })
+app.use(express.static(path.join(__dirname, '/dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+})
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
@@ -60,4 +66,3 @@ app.use((err, req, res, next) => {
     message,
   });
 });
-
