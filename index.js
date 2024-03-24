@@ -10,7 +10,7 @@ import cookieParser from 'cookie-parser';
 import path from 'path';
 import cors from "cors"
 dotenv.config();
-const Port = process.env.PORT;
+const Port = process.env.PORT || 8000;
 
 mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
