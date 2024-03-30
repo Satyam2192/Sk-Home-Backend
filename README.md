@@ -89,10 +89,6 @@ This API provides endpoints for managing users, authentication, listings, footer
 
 ### Footer Endpoints
 
-- **POST /api/footer/create**
-  - Creates a new footer entry.
-  - Requires footer details in the request body.
-  - Returns the created footer information.
 - **PUT /api/footer/update/:id**
   - Updates a footer entry.
   - Requires the footer's `id` in the URL path and updated details in the request body.
@@ -103,10 +99,6 @@ This API provides endpoints for managing users, authentication, listings, footer
 
 ### Navbar Endpoints
 
-- **POST /api/navbar/create**
-  - Creates a new navbar entry.
-  - Requires navbar details in the request body.
-  - Returns the created navbar information.
 - **PUT /api/navbar/update/:id**
   - Updates a navbar entry.
   - Requires the navbar's `id` in the URL path and updated details in the request body.
