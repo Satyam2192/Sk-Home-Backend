@@ -1,5 +1,7 @@
 ## Overview
 
+- This site Sk-Homes is hosted on AWS by GitHub CI/CD Pipeline on url - [URL](http://13.49.67.115/)
+
 This API provides endpoints for managing users, authentication, listings, footer, and navbar data. It is built using Node.js, Express, and MongoDB.
 
 ## Authentication
